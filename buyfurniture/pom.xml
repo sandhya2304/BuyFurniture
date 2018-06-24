@@ -18,6 +18,15 @@
 
 	<dependencies>
 	
+	<!-- link backend project -->
+	
+	  <dependency>
+	     <groupId>com.home</groupId>
+         <artifactId>furniturebackend</artifactId>
+         <version>0.0.1-SNAPSHOT</version>
+	  </dependency>
+	
+	
 	<!-- JAVA EE -->
 		<dependency>
 			<groupId>javax</groupId>
