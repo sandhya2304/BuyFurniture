@@ -1,14 +1,26 @@
-package com.home.buyfurniture.dto;
+package com.home.furniturebackend.dto;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+
+@Entity
 public class Category implements Serializable
 {
-	
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private String name;
 	private String description;
+	
+	@Column(name="image_url")
 	private String imageURL;
+	
+	@Column(name="is_active")
 	private boolean active = true;
 	
 	
@@ -18,16 +30,6 @@ public class Category implements Serializable
 	
 	
 	
-	public Category(int id, String name, String description, String imageURL, boolean active) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.description = description;
-		this.imageURL = imageURL;
-		this.active = active;
-	}
-
-
 
 	public int getId() {
 		return id;
@@ -64,12 +66,11 @@ public class Category implements Serializable
 
 	@Override
 	public String toString() {
-		return "Category [name=" + name + "]";
+		return "Category [id=" + id + ", name=" + name + ", description=" + description + ", imageURL=" + imageURL
+				+ ", active=" + active + "]";
 	}
 
 
-
-	
 	
 	
 	

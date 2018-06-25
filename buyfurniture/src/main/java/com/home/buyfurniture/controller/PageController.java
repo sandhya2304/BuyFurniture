@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.home.buyfurniture.dao.CategoryDao;
-import com.home.buyfurniture.dto.Category;
+import com.home.furniturebackend.dao.CategoryDao;
+import com.home.furniturebackend.dto.Category;
 
 @Controller
 public class PageController 
