@@ -6,9 +6,7 @@ import com.home.furniturebackend.dto.Category;
 
 public interface CategoryDao 
 {
-	
-	
-	
+		
 	public List<Category> listAll();
 	
 	public Category get(int id);

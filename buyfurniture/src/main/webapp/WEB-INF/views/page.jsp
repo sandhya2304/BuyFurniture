@@ -26,6 +26,8 @@
     <script>
      
        window.menu='${title}' ;
+       
+       window.contextRoot = '${contextRoot}';
     
     </script>
 
@@ -34,6 +36,9 @@
     
     <!-- bootstrap readable theme -->
  <link href="${css}/bootstrap-readable-theme.css" rel="stylesheet">   
+ 
+   <!-- databele bootstrap  -->
+ <link href="${css}/dataTables.bootstrap.css" rel="stylesheet">   
 
     <!-- Custom styles for this template -->
     <link href="${css}/shop-homepage.css" rel="stylesheet">
@@ -80,6 +85,13 @@
 				<%@include file="listProduct.jsp"%>
 
 			</c:if>
+			
+			<!-- load only when show single product click-->
+			<c:if test="${userClickShowProduct == true}">
+
+				<%@include file="singleProduct.jsp"%>
+
+			</c:if>
 
 
 		</div>
@@ -90,10 +102,18 @@
 		<%@include file="./shared/footer.jsp"%>
 
 
-
-		<!-- Bootstrap core JavaScript -->
+		<!-- JQuery -->
 		<script src="${js}/jquery.js"></script>
+		
+		<!-- Bootstrap core JavaScript -->
 		<script src="${js }/bootstrap.min.js"></script>
+		
+		<!-- JQuery Datatable plugin -->
+		<script src="${js}/jquery.dataTables.js"></script>
+
+         <!-- JQuery Datatable bootstrap -->
+		<script src="${js}/dataTables.bootstrap.js"></script>
+
 
 		<!-- self coded javascript -->
 

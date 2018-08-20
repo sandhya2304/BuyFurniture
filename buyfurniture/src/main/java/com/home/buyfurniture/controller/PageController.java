@@ -6,14 +6,19 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.home.furniturebackend.dao.CategoryDao;
+import com.home.furniturebackend.dao.*;
 import com.home.furniturebackend.dto.Category;
+import com.home.furniturebackend.dto.Product;
 
 @Controller
 public class PageController 
 {
 	@Autowired
 	private CategoryDao categoryDao;
+	
+	
+	@Autowired
+	private ProductDao productDao;
 	
 	@RequestMapping(value={"/", "/home" , "/index"})
 	public ModelAndView index()
@@ -53,7 +58,7 @@ public class PageController
 	}
 	
 	/*
-	 * Methods to load all producst and based on category
+	 * Methods to load all products and based on category
 	 */
 	
 	@RequestMapping(value="/show/all/products")
@@ -96,6 +101,29 @@ public class PageController
 		
 		return mv;
 		
+	}
+	
+	/*
+	 * View Single Product
+	 */
+	@RequestMapping(value="/show/{id}/product")
+	public ModelAndView showSingleProduct(@PathVariable int id)
+	{
+		ModelAndView mv=new ModelAndView("page");
+		
+		Product product=productDao.get(id);
+		
+		//update the view count
+		product.setViews(product.getViews() +1);
+		productDao.updateProduct(product);
+		
+		mv.addObject("title",product.getName());
+		mv.addObject("product",product);
+		
+		mv.addObject("userClickShowProduct",true);
+		
+		
+		return mv;
 	}
 	
 
