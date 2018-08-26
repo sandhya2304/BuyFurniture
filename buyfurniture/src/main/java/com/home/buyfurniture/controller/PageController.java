@@ -1,11 +1,14 @@
 package com.home.buyfurniture.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.home.buyfurniture.exception.ProductNotFoundException;
 import com.home.furniturebackend.dao.*;
 import com.home.furniturebackend.dto.Category;
 import com.home.furniturebackend.dto.Product;
@@ -13,6 +16,9 @@ import com.home.furniturebackend.dto.Product;
 @Controller
 public class PageController 
 {
+	
+	private static final Logger logger=LoggerFactory.getLogger(PageController.class);
+	
 	@Autowired
 	private CategoryDao categoryDao;
 	
@@ -25,6 +31,10 @@ public class PageController
 	{
 		ModelAndView mv=new ModelAndView("page");
 		mv.addObject("title","home");
+		
+		logger.info("Inside page controller index -INFO");
+		
+		logger.debug("Inside page controller index -DEBUG");
 		
 		//passing the list of categories
 		mv.addObject("categories",categoryDao.listAll());
@@ -76,6 +86,10 @@ public class PageController
 		
 	}
 	
+	/*
+	 * Methods to load all products and based on category id
+	 */
+	
 	@RequestMapping(value="/show/category/{id}/products")
 	public ModelAndView showCategoryProducts(@PathVariable("id") int id)
 	{
@@ -107,11 +121,13 @@ public class PageController
 	 * View Single Product
 	 */
 	@RequestMapping(value="/show/{id}/product")
-	public ModelAndView showSingleProduct(@PathVariable int id)
+	public ModelAndView showSingleProduct(@PathVariable int id) throws ProductNotFoundException
 	{
 		ModelAndView mv=new ModelAndView("page");
 		
 		Product product=productDao.get(id);
+		
+		if(product == null)throw new ProductNotFoundException();
 		
 		//update the view count
 		product.setViews(product.getViews() +1);
