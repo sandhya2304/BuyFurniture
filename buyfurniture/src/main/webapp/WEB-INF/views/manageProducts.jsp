@@ -3,7 +3,27 @@
 <div class="container">
 
 	<div class="row">
-
+	
+	<!-- for displaying message and vanish after shown -->
+	 <c:if test="${not empty message }">
+	  
+	    <div class="col-xs-12">
+	    
+	       <div class="alert alert-success alert-dismissible">
+	         
+	           <button type="button" class="close" data-dismiss="alert">&times;</button>
+	           
+	            ${message }
+	          
+	       </div>
+	    
+	    </div>
+	 
+	 
+	 
+	 </c:if>
+	  <!-- product table for storing  -->
+    
 		<div class="col-md-offset-2 col-md-8">
 
 			<div class="panel panel-primary">
@@ -17,8 +37,9 @@
 				
 				<!-- form elements -->
 				
-				<sf:form class="form-horizontal" modelAttribute="product" action="${contextRoot}/manage/product" 
-					method="POST" enctype="multipart/form-data">
+				<sf:form class="form-horizontal" modelAttribute="product" 
+				         action="${contextRoot}/manage/products" 
+					     method="POST" >
 					
 				
 				
@@ -27,7 +48,7 @@
 							<div class="col-md-8">
 								<sf:input type="text" path="name" class="form-control"
 									placeholder="Product Name" />
-								<sf:errors path="name" cssClass="help-block" element="em"/> 
+								
 							</div>
 						</div>
 						
@@ -37,7 +58,7 @@
 							<div class="col-md-8">
 								<sf:input type="text" path="brand" class="form-control"
 									placeholder="Brand Name" /> 
-								<sf:errors path="brand" cssClass="help-block" element="em"/>	
+								
 							</div>
 						</div>
 
@@ -46,7 +67,7 @@
 							<div class="col-md-8">
 								<sf:textarea path="description" class="form-control"
 									placeholder="Enter your description here!" /> 
-								<sf:errors path="description" cssClass="help-block" element="em"/>
+								                                  
 							</div>
 						</div>
 
@@ -55,7 +76,7 @@
 							<div class="col-md-8">
 								<sf:input type="number" path="unitPrice" class="form-control"
 									placeholder="Enter Unit Price" />
-								<sf:errors path="unitPrice" cssClass="help-block" element="em"/>
+								
 							</div>
 						</div>
 
@@ -64,7 +85,7 @@
 							<div class="col-md-8">
 								<sf:input type="number" path="quantity" class="form-control"
 									placeholder="Enter Quantity" />
-								<sf:errors path="quantity" cssClass="help-block" element="em"/> 
+								      
 							</div>
 						</div>
 
@@ -76,18 +97,8 @@
 								<sf:select path="categoryId" 
 								           items="${categories}" 
 								           itemLabel="name" 
-								           itemValue="id" class="form-control"/>
-							
-							
-								<div class="text-right">
-									<br/>	
-						
-							
-							<!-- for categorie button drop downlist -->														
-									<button type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#myCategoryModal">
-									   Add New Category
-									</button>
-								</div>							
+								           itemValue="id" class="form-control" id="categoryId"/>
+													
 							</div>
 							
 						</div>
@@ -104,6 +115,8 @@
 									<sf:hidden path="code"/>
 									<sf:hidden path="supplierId"/>
 									<sf:hidden path="active"/>		
+									<sf:hidden path="purchases"/>	
+									<sf:hidden path="views"/>	
 							<!-- hidden fields for getting original values -->	
 							
 								<input type="submit" name="submit" value="Save" class="btn btn-primary"/>
