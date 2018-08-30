@@ -61,7 +61,7 @@
 			<version>${hibernate.version}</version>
 		</dependency>
 		
-			<!-- Hibernate Validator -->
+			<!--  Validation  dependency-->
 		<dependency>
 		    <groupId>org.hibernate</groupId>
 		    <artifactId>hibernate-validator</artifactId>

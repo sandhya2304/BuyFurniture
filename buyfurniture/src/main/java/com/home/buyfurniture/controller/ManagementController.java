@@ -2,10 +2,14 @@ package com.home.buyfurniture.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -67,9 +71,21 @@ public class ManagementController
 	 * for save product
 	 */
 	
-	@RequestMapping(value="/products",method=RequestMethod.POST)
-	public String handleProductSubmission(@ModelAttribute("product")Product mPRoduct)
+	@RequestMapping(value="/products",method=RequestMethod.POST)   
+	public String handleProductSubmission(@Valid @ModelAttribute("product")Product mPRoduct,BindingResult results,Model model)
 	{
+		// to pass any data we use model here and here we user server side validation
+		//check if there are any errors
+		if(results.hasErrors())
+		{
+
+			model.addAttribute("userClickManageProducts",true);
+			model.addAttribute("title","Manage Products");
+			model.addAttribute("message","validation fields for product submission");
+			
+			
+			return "page";
+		}
 		
 		logger.info(mPRoduct.toString());
 		
@@ -79,7 +95,7 @@ public class ManagementController
 		return "redirect:/manage/products?operation=product";
 	}
 	
-	// for displaying all categories form database
+	// for displaying all categories from database
 	@ModelAttribute("categories")
 	public List<Category> listCategorie()
 	{
