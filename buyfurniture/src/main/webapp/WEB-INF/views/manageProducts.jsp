@@ -39,7 +39,9 @@
 				
 				<sf:form class="form-horizontal" modelAttribute="product" 
 				         action="${contextRoot}/manage/products" 
-					     method="POST" >
+					     method="POST" 
+					     enctype="multipart/form-data"
+					     >
 					
 				
 				
@@ -85,6 +87,16 @@
 							<div class="col-md-8">
 								<sf:input type="number" path="quantity" class="form-control"
 									placeholder="Enter Quantity" />
+								      
+							</div>
+						</div>
+						
+						<!-- file elemnet for image -->
+						
+						<div class="form-group">
+							<label class="control-label col-md-4">Select an Image:</label>
+							<div class="col-md-8">
+								<sf:input type="file" path="file" class="form-control" />
 								      
 							</div>
 						</div>

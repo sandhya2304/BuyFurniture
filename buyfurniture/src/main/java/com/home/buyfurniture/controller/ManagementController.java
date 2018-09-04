@@ -2,6 +2,7 @@ package com.home.buyfurniture.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.home.buyfurniture.util.FileUplaodUtility;
 import com.home.furniturebackend.dao.CategoryDao;
 import com.home.furniturebackend.dao.ProductDao;
 import com.home.furniturebackend.dto.Category;
@@ -72,7 +74,8 @@ public class ManagementController
 	 */
 	
 	@RequestMapping(value="/products",method=RequestMethod.POST)   
-	public String handleProductSubmission(@Valid @ModelAttribute("product")Product mPRoduct,BindingResult results,Model model)
+	public String handleProductSubmission(@Valid @ModelAttribute("product")Product mPRoduct,BindingResult results,
+		             	Model model,HttpServletRequest request)
 	{
 		// to pass any data we use model here and here we user server side validation
 		//check if there are any errors
@@ -91,6 +94,16 @@ public class ManagementController
 		
 		//create a new Product
 		productDao.addProduct(mPRoduct);
+		
+		
+		if(!mPRoduct.getFile().getOriginalFilename().equals(""))
+		{
+			
+			FileUplaodUtility.uploadFile(request,mPRoduct.getFile(),mPRoduct.getCode());
+			
+		}
+		
+		
 		
 		return "redirect:/manage/products?operation=product";
 	}
