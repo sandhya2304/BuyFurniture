@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.home.buyfurniture.util.FileUplaodUtility;
+import com.home.buyfurniture.util.ProductValidator;
 import com.home.furniturebackend.dao.CategoryDao;
 import com.home.furniturebackend.dao.ProductDao;
 import com.home.furniturebackend.dto.Category;
@@ -77,6 +78,11 @@ public class ManagementController
 	public String handleProductSubmission(@Valid @ModelAttribute("product")Product mPRoduct,BindingResult results,
 		             	Model model,HttpServletRequest request)
 	{
+		
+		//spring custom validation on image
+		new ProductValidator().validate(mPRoduct, results);
+		
+		
 		// to pass any data we use model here and here we user server side validation
 		//check if there are any errors
 		if(results.hasErrors())
@@ -95,7 +101,7 @@ public class ManagementController
 		//create a new Product
 		productDao.addProduct(mPRoduct);
 		
-		
+		// for images
 		if(!mPRoduct.getFile().getOriginalFilename().equals(""))
 		{
 			

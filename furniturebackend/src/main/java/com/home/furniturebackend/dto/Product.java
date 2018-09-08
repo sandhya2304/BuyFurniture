@@ -36,14 +36,18 @@ public class Product implements Serializable {
 	@Min(value = 1, message="Please select at least one value!")
 	private double unitPrice;
 	private int quantity;
+	
 	@Column(name = "is_active")	
 	private boolean active;
+	
 	@Column(name = "category_id")
 	@JsonIgnore
 	private int categoryId;
+	
 	@Column(name = "supplier_id")
 	@JsonIgnore
 	private int supplierId;
+	
 	private int purchases;
 	private int views;
 	
