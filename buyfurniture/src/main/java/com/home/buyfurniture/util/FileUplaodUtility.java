@@ -28,7 +28,7 @@ public class FileUplaodUtility
 		logger.info(REAL_PAIH);
 		
 		//to make sure all directory exists
-		//create new directory
+		//create new directory hmm
 		
 		if(!new File(ABS_PAIH).exists())
 		{
