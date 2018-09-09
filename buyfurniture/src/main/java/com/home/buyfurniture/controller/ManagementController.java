@@ -12,9 +12,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.home.buyfurniture.util.FileUplaodUtility;
@@ -69,6 +71,28 @@ public class ManagementController
 		return mv;
 		
 	}
+	
+	
+	@RequestMapping(value="/{id}/product",method=RequestMethod.GET)
+	public ModelAndView showEditProduct(@PathVariable int id)
+	{
+		
+		ModelAndView mv=new ModelAndView("page");
+		
+		mv.addObject("userClickManageProducts",true);
+		mv.addObject("title","Manage Products");
+		
+		//fetch product from databse
+		Product nProduct=productDao.get(id);
+		//set the product from the database
+		mv.addObject("product",nProduct);
+			
+		return mv;
+		
+	}
+	
+	
+	
 	/*
 	 * handling product submission
 	 * for save product
@@ -78,10 +102,20 @@ public class ManagementController
 	public String handleProductSubmission(@Valid @ModelAttribute("product")Product mPRoduct,BindingResult results,
 		             	Model model,HttpServletRequest request)
 	{
-		
-		//spring custom validation on image
-		new ProductValidator().validate(mPRoduct, results);
-		
+		//if its new product
+		if(mPRoduct.getId() == 0)
+		{
+		    //spring custom validation on image
+		    new ProductValidator().validate(mPRoduct, results);
+		}
+		else
+		{
+			if(!mPRoduct.getFile().getOriginalFilename().equals(""))
+			{
+				new ProductValidator().validate(mPRoduct, results);
+			}
+			
+		}
 		
 		// to pass any data we use model here and here we user server side validation
 		//check if there are any errors
@@ -98,8 +132,18 @@ public class ManagementController
 		
 		logger.info(mPRoduct.toString());
 		
-		//create a new Product
-		productDao.addProduct(mPRoduct);
+		//create a new Product if id  is 0
+		
+		if(mPRoduct.getId() == 0)
+		{
+		  productDao.addProduct(mPRoduct);
+		}
+		else
+		{
+			//update the product if id is not 0
+			productDao.updateProduct(mPRoduct);
+		}
+		
 		
 		// for images
 		if(!mPRoduct.getFile().getOriginalFilename().equals(""))
@@ -112,6 +156,26 @@ public class ManagementController
 		
 		
 		return "redirect:/manage/products?operation=product";
+	}
+	
+	
+	//activate PRoduct deactivate
+	@RequestMapping(value="/product/{id}/activation",method=RequestMethod.POST) 
+	@ResponseBody
+	public String handleProductActivation(@PathVariable int id)
+	{
+		//fetch the product from the datatbase
+		Product product =productDao.get(id); 
+		//check whether its active or not
+		boolean isActive= product.isActive();
+		//activating and deactiving based on value of field value
+		product.setActive(!product.isActive());
+		//updating the product
+		productDao.updateProduct(product);
+		
+		 return (isActive)? "You are deactivate the product id!" +product.getId() 
+		                   : "You are activate the product id!"+product.getId() ;
+	
 	}
 	
 	// for displaying all categories from database

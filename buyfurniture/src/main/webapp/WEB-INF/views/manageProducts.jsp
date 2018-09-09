@@ -161,7 +161,7 @@
     <div class="col-xs-12">
       <div style="overflow:auto">
       
-       <table id="productsTable" class="table table-condensed table-bordered">
+       <table id="adminProductsTable" class="table table-condensed table-bordered">
 							
 				<thead>					
 					<tr>					
@@ -176,58 +176,7 @@
 					</tr>					
 				</thead>
 				
-				<tbody>
-				
-				  <tr> 
-				    <td>3</td>
-				    <td>  
-				    
-				      <img class="adminDataTableImg" alt="Google Pixel" src="${contextRoot}/resources/images/PRDPQR123WGTX.jpg">
-				     
-				    </td>
-				    <td>Google  </td>
-				    <td>Google Pixel </td>
-				    <td>5</td>
-				    <td>&#8377; 57000 /- </td>
-				    <td>
-				    <!-- toggle switch -->
-				     <label class="switch">
-				        <input type="checkbox" checked="checked" value="3" />
-				        <div class="slider" ></div>
-				     </label>  </td>
-				     <td>
-				     
-				       <a href="${contextRoot}/manage/3/product" class="btn btn-warning" ><span class="glyphicon glyphicon-pencil" ></span>   </a>
-				     
-				     </td>
-				  </tr>
-				  
-				   <tr> 
-				    <td>3</td>
-				    <td>  
-				    
-				      <img class="adminDataTableImg" alt="Google Pixel" src="${contextRoot}/resources/images/PRDPQR123WGTX.jpg">
-				     
-				    </td>
-				    <td>Google  </td>
-				    <td>Google Pixel </td>
-				    <td>5</td>
-				    <td>&#8377; 57000 /- </td>
-				    <td>
-				    <!-- toggle switch -->
-				     <label class="switch">
-				        <input type="checkbox" checked="checked" value="3" />
-				         <input type="checkbox"  value="3" />
-				        <div class="slider"></div>
-				     </label>  </td>
-				     <td>
-				     
-				       <a href="${contextRoot}/manage/3/product" class="btn btn-warning" ><span class="glyphicon glyphicon-pencil" ></span>   </a>
-				     
-				     </td>
-				  </tr>
-				
-				</tbody>
+			
 				
 				<tfoot>
 					<tr>					
