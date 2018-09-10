@@ -64,6 +64,10 @@ public class ManagementController
 			{
 				mv.addObject("message","Product Submitted Successfully!!!");
 			}
+			else if(operation.equals("category"))
+			{
+				mv.addObject("message","category Submitted Successfully!!!");
+			}
 			
 		}
 		
@@ -82,7 +86,7 @@ public class ManagementController
 		mv.addObject("userClickManageProducts",true);
 		mv.addObject("title","Manage Products");
 		
-		//fetch product from databse
+		//fetch product from database
 		Product nProduct=productDao.get(id);
 		//set the product from the database
 		mv.addObject("product",nProduct);
@@ -90,9 +94,6 @@ public class ManagementController
 		return mv;
 		
 	}
-	
-	
-	
 	/*
 	 * handling product submission
 	 * for save product
@@ -145,7 +146,7 @@ public class ManagementController
 		}
 		
 		
-		// for images
+		// for images file upload multipart
 		if(!mPRoduct.getFile().getOriginalFilename().equals(""))
 		{
 			
@@ -178,11 +179,29 @@ public class ManagementController
 	
 	}
 	
+	@RequestMapping(value="/category",method=RequestMethod.POST) 
+	public String handleCategorySubmission(@ModelAttribute Category category)
+	{
+		
+		//add the new category
+		categoryDao.add(category);
+		
+		return "redirect:/manage/products?operation=category";
+	}
+	
+	
 	// for displaying all categories from database
 	@ModelAttribute("categories")
 	public List<Category> listCategorie()
 	{
 		return categoryDao.listAll();
+	}
+	
+	//to link it with category form
+	@ModelAttribute("category")
+	public Category getCategory()
+	{
+		return new Category();
 	}
 	
 

@@ -19,7 +19,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="sandhya">
 
     <title> Buy Furniture  ${title }</title>
     
@@ -111,6 +111,9 @@
 
 		<!-- JQuery -->
 		<script src="${js}/jquery.js"></script>
+		
+				<!-- JQuery validation-->
+		<script src="${js}/jquery.validate.js"></script>
 		
 		<!-- Bootstrap core JavaScript -->
 		<script src="${js }/bootstrap.min.js"></script>

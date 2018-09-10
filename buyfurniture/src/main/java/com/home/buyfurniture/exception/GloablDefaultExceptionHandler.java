@@ -14,6 +14,9 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 public class GloablDefaultExceptionHandler
 {
 		
+	//if someone misusing your url and write there like string or id so this error occurs which come from web.xml 
+	
+	//this exception occur on all product url
 	@ExceptionHandler(NoHandlerFoundException.class)
 	public ModelAndView handleNoFoundException()
 	{
@@ -29,7 +32,8 @@ public class GloablDefaultExceptionHandler
 		return mv;
 	}
 	
-
+   //product not found exception class its a custom exception is someone writing in url
+	//occur on single product writing numeric 
 	@ExceptionHandler(ProductNotFoundException.class)
 	public ModelAndView handleProductNotFoundException()
 	{
@@ -45,7 +49,7 @@ public class GloablDefaultExceptionHandler
 		return mv;
 	}
 	
-
+//occur on single product writing string
 	@ExceptionHandler(Exception.class)
 	public ModelAndView handlerException(Exception ex)
 	{

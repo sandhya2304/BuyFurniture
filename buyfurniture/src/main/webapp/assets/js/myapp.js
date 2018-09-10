@@ -27,7 +27,7 @@ $(function(){
 	}
 	/*********************************************************************************************/
 	
-	//code for Jquery datatable
+	//code for Jquery product datatable
 	
 	var $table = $('#productListTable');
 	
@@ -137,11 +137,7 @@ $(function(){
 		  },3000)
 		
 		
-	  }
-	/*************************bootbox plugin for toggle switch************************************/
-	
-	
-	
+	  }	
 	
 	/*****************data table for Admin***********************/
 	
@@ -217,7 +213,7 @@ $(function(){
 							  } 
 						  else
 							  {
-							  str += '<input type="checkbox"  value="'+row.id+'" />'; 
+							      str += '<input type="checkbox"  value="'+row.id+'" />'; 
 							  }
 						  str += '<div class="slider"></div> </label>';
 						  
@@ -242,7 +238,7 @@ $(function(){
 				  
 			  ],
 			  
-			  //bootbox code here
+			  //bootbox code here for activation and deactivation
 			  initComplete : function(){
 				  
 				  var api = this.api();
@@ -292,6 +288,59 @@ $(function(){
 		
 		}
 
+	
+	/**************************jquey validation for category********************************************/
+	
+	var $categoryForm=$('#categoryForm') 
+	
+	if($categoryForm.length)
+		{
+		$categoryForm.validate({
+			 
+			   rules: {
+				   
+				   name: {
+					   
+					   required : true,
+					   minlength : 2
+					   
+				   },
+				   description : {
+					   
+					   required : true
+				   }
+			   },
+			  
+			   messages : {
+				   
+				   name : {
+					   
+					   required : "please enter the category name!",
+					   minlength : "category names should not be less than 2!",
+					   
+				   },
+				   description : {
+					   
+					   required : "please add description for this category!!",
+				   }
+				   
+			   },
+			   errorElement : 'em',
+			   errorPlacement : function(error,element) {
+				   
+				   //add the class of help-block
+				   error.addClass('help-block');
+				   
+				   //add the error element after input element
+				   error.insertAfter(element);
+			   }		   
+		   });
+		   	
+		}
+	
+	
+	//--------------------------------------------------------------------------------------
+	
 	
 	/**********************************************************************/
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////
