@@ -257,9 +257,7 @@
 								<input type="submit" value="Add Category" class="btn btn-primary" />
 							</div>
 						</div>
-
-
-					</sf:form>
+		  </sf:form>
        
        
        </div>

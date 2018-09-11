@@ -289,7 +289,7 @@ $(function(){
 		}
 
 	
-	/**************************jquey validation for category********************************************/
+	/**************************jquery validation for category********************************************/
 	
 	var $categoryForm=$('#categoryForm') 
 	
