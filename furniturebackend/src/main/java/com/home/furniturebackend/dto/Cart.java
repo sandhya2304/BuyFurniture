@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Cart
@@ -14,21 +15,24 @@ public class Cart
 	@GeneratedValue(strategy = GenerationType.IDENTITY) 
 	private int id;
 	
-	@Column(name="user_Id")
-	private int userId;
+	/*----------------------*/
+	
+	@OneToOne
+	private User user;
+	
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
+	public User getUser() {
+		return user;
+	}
 	
 	@Column(name = "grand_total")
 	private double grandTotal;
 	@Column(name = "cart_lines")
 	private int cartLines;
 	
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
-	
-	public int getUserId() {
-		return userId;
-	}
 	
 	
 	public int getId() {

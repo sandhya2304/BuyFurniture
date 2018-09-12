@@ -51,11 +51,11 @@ public class UserDaoImpl implements UserDao
 		
 	}
 
-	public boolean addCart(Cart cart)
+	public boolean updateCart(Cart cart)
 	{
 		try
 		{
-			sessionFactory.getCurrentSession().persist(cart);
+			sessionFactory.getCurrentSession().update(cart);
 			return true;
 		}catch(Exception e)
 		{
@@ -64,6 +64,27 @@ public class UserDaoImpl implements UserDao
 		}
 		
 		
+	}
+
+	public User getByEmail(String email) 
+	{
+		
+		String query = "FROM User Where email = :email";
+		
+		try
+		{
+			
+			return sessionFactory.getCurrentSession()
+			       .createQuery(query,User.class)
+			       .setParameter("email",email)
+			        .getSingleResult();
+			       
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+			return null;
+		}
+
 	}
 	
 	

@@ -37,7 +37,7 @@ public class UserTestCase
 		
 	}
 	
-	@Test
+	/*@Test
 	public void testAdd()
 	{
 		
@@ -74,7 +74,7 @@ public class UserTestCase
 			//create a cart for this user
 			
 			cart = new Cart();
-			cart.setUserId(user.getId());
+			cart.setUser(user);
 			
 			//add the cart
 			
@@ -98,9 +98,54 @@ public class UserTestCase
 		}
 		
 		
+	}*/
+	
+	
+	/*@Test
+	public void testAdd()
+	{
+		
+		User user=new User();
+		user.setFirstName("Ram");
+		user.setLastName("Sharma");
+		user.setEmail("ram@gmail.com");
+		user.setContactNumber("98730000");
+		user.setRole("USER");
+		user.setPassword("1234");
+
+		
+		if(user.getRole().equals("USER"))
+		{
+			//create a cart for this user
+			
+			cart = new Cart();
+			cart.setUser(user);
+			
+			//attach cart with the user
+			user.setCart(cart);
+				
+		}
+		
+		//add the user
+		assertEquals("Failed To Add user",true, userDao.addUser(user));
+		
+	}*/
+	
+	@Test
+	public void testUpdateCart()
+	{
+		//fetch the user by its email
+		user = userDao.getByEmail("ram@gmail.com");
+		
+		//get the cart of the user
+		cart = user.getCart();
+		
+		cart.setGrandTotal(9765);
+		cart.setCartLines(2);
+		
+		
+		assertEquals("Failed To update the cart",true, userDao.updateCart(cart));
 	}
-	
-	
 	
 
 }
