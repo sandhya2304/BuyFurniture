@@ -1,5 +1,7 @@
 package com.home.furniturebackend.daoImpl;
 
+import java.util.List;
+
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -85,6 +87,49 @@ public class UserDaoImpl implements UserDao
 			return null;
 		}
 
+	}
+
+	public Address getBillingAddress(User user)
+	{
+		
+		String query = "From Address where user = :user and billing = :billing";
+		
+		try
+		{
+			return sessionFactory.getCurrentSession()
+					  .createQuery(query,Address.class)
+					   .setParameter("user",user)
+			           .setParameter("billing",true)
+			            .getSingleResult();
+			
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+			return null;
+		}
+		
+		
+	}
+
+	public List<Address> listShippingAddress(User user)
+	{
+       String query = "From Address where user = :user and shipping = :shipping";
+		
+		try
+		{
+			return sessionFactory.getCurrentSession()
+					  .createQuery(query,Address.class)
+					   .setParameter("user",user)
+			           .setParameter("shipping",true)
+			            .getResultList();
+			
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+			return null;
+		}
+		
+		
 	}
 	
 	
