@@ -35,6 +35,7 @@ public class Address implements Serializable
 	@Column(name ="postal_code")
 	@NotBlank(message = "Please enter Postal Code!")	
 	private String postalCode;
+	
 	@Column(name="is_shipping")
 	private boolean shipping;
 	@Column(name="is_billing")
@@ -43,8 +44,6 @@ public class Address implements Serializable
 	
 	@ManyToOne
 	private User user;
-	
-	
 	
 	
 	public User getUser() {
@@ -101,12 +100,15 @@ public class Address implements Serializable
 	public void setShipping(boolean shipping) {
 		this.shipping = shipping;
 	}
+	
+	
 	public boolean isBilling() {
 		return billing;
 	}
 	public void setBilling(boolean billing) {
 		this.billing = billing;
 	}
+	
 	
 	@Override
 	public String toString() {

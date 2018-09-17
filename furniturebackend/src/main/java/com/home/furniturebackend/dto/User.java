@@ -38,6 +38,20 @@ public class User implements Serializable
 	@NotBlank(message = "Please enter password!")
 	private String password;
 	
+	
+
+	@javax.persistence.Transient
+	private String confirmPassword;
+	
+	public void setConfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
+	}
+	
+	public String getConfirmPassword() {
+		return confirmPassword;
+	}
+	
+	
 	@OneToOne(mappedBy="user",cascade = CascadeType.ALL)
 	private Cart cart;
 	
