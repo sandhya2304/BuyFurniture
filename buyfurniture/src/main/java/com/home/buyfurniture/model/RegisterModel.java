@@ -1,13 +1,15 @@
 package com.home.buyfurniture.model;
 
+import java.io.Serializable;
+
 import com.home.furniturebackend.dto.Address;
 import com.home.furniturebackend.dto.User;
 
-public class RegisterModel
+public class RegisterModel implements Serializable
 {
 	
 	private User user;
-	private Address address;
+	private Address billing;
 	
 	
 	public User getUser() {
@@ -16,12 +18,15 @@ public class RegisterModel
 	public void setUser(User user) {
 		this.user = user;
 	}
-	public Address getAddress() {
-		return address;
+	public Address getBilling() {
+		return billing;
 	}
-	public void setAddress(Address address) {
-		this.address = address;
+	public void setBilling(Address billing) {
+		this.billing = billing;
 	}
-
+	
+	
+	
+	
 
 }
