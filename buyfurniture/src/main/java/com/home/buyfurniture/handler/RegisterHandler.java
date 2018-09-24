@@ -5,6 +5,7 @@ import java.io.Serializable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.binding.message.MessageBuilder;
 import org.springframework.binding.message.MessageContext;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import com.home.buyfurniture.model.RegisterModel;
@@ -16,8 +17,17 @@ import com.home.furniturebackend.dto.User;
 @Component
 public class RegisterHandler implements Serializable
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	
 	@Autowired
 	private UserDao userDao;
+	
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 	
 	public RegisterModel init()
 	{
@@ -35,6 +45,7 @@ public class RegisterHandler implements Serializable
 		registerModel.setBilling(billing);
 	}
 	
+	
 	public String saveAll(RegisterModel model)
 	{
 		String transitionValue = "success";
@@ -50,8 +61,13 @@ public class RegisterHandler implements Serializable
 			user.setCart(cart);			
 		}
 		
+		//encode the password
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
+		
+		
 		//save the user
 		userDao.addUser(user);
+		
 		
 		//get the address
 		
@@ -65,6 +81,7 @@ public class RegisterHandler implements Serializable
 		
 		return transitionValue;
 	}
+	
 	
 	//custom validation
 	public String validateUser(User user,MessageContext error)

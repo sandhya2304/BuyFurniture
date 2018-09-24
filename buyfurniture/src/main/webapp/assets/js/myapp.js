@@ -26,7 +26,22 @@ $(function(){
 	
 	}
 	/*********************************************************************************************/
+	//to tacle csrf token
 	
+	// for handling CSRF token
+	var token = $('meta[name="_csrf"]').attr('content');
+	var header = $('meta[name="_csrf_header"]').attr('content');
+	
+	if((token!=undefined && header !=undefined) && (token.length > 0 && header.length > 0)) {		
+		// set the token header for the ajax request
+		$(document).ajaxSend(function(e, xhr, options) {			
+			xhr.setRequestHeader(header,token);			
+		});				
+	}
+	
+	
+	
+	/***********************************************************************************/
 	//code for Jquery product datatable
 	
 	var $table = $('#productListTable');
@@ -339,9 +354,56 @@ $(function(){
 		}
 	
 	
+	//-------------------valiadateion for-----LOGIN FORM-----------------------------------------------------
+	
+var $loginForm=$('#loginForm') 
+	
+	if($loginForm.length)
+		{
+		$loginForm.validate({
+			 
+			   rules: {
+				   
+				   username: {
+					   
+					   required : true,
+					   email : true
+					   
+				   },
+				   password : {
+					   
+					   required : true
+				   }
+			   },
+			  
+			   messages : {
+				   
+				   username : {
+					   
+					   required : "please enter username!",
+					   email : "please enter validate email!",
+					   
+				   },
+				   password : {
+					   
+					   required : "please enter the password!!",
+				   }
+				   
+			   },
+			   errorElement : 'em',
+			   errorPlacement : function(error,element) {
+				   
+				   //add the class of help-block
+				   error.addClass('help-block');
+				   
+				   //add the error element after input element
+				   error.insertAfter(element);
+			   }		   
+		   });
+		   	
+		}
+	
 	//--------------------------------------------------------------------------------------
-	
-	
 	/**********************************************************************/
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////
 });
