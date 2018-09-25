@@ -19,26 +19,27 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
        <http pattern="/resources/**" security="none"/>
    
    <http>
+   
    <!-- only admin access -->
    <intercept-url pattern="/manage/**" access="hasAuthority('ADMIN')" /> 
     <!-- only userr access(who is registered) -->
-    <intercept-url pattern="/cart/**" access="hasAuthority('ADMIN')" /> 
+    <intercept-url pattern="/cart/**" access="hasAuthority('USER')" /> 
      <!-- rest of the people -->
      <intercept-url pattern="/**" access="permitAll" />    
      <form-login login-page="/login" />
      <access-denied-handler error-page="/access-denied" />
-     <logout />
+    
    </http>
 
 
 	<authentication-manager>
 		<authentication-provider> 
 		
-		<!-- for decoding pasword -->
+		<!-- for decoding password -->
 			<password-encoder ref="passwordEncoder" />
 			<jdbc-user-service data-source-ref="dataSource"
-			    users-by-username-query="select email,password,enabled from user_detail where email = ?"
-			    authorities-by-username-query="select email,role from user_detail where email = ?"
+			    authorities-by-username-query="select email, role from user_detail where email = ?"
+ 				users-by-username-query="select email, password, enabled from user_detail where email = ?"
 			/>
 			
 		</authentication-provider>

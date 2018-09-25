@@ -168,9 +168,12 @@
    </div>
    
     <div class="col-xs-12">
-      <div style="overflow:auto">
-      
-       <table id="adminProductsTable" class="table table-condensed table-bordered">
+    
+    <div class="container-fluid">
+                
+                  <div class="table-responsive">
+                  
+                     <table id="adminProductsTable" class="table table-condensed table-bordered">
 							
 				<thead>					
 					<tr>					
@@ -203,11 +206,12 @@
 				
 							
 			</table>
+                  
+                  
+              </div>
+       </div>           
       
-      
-      </div>
-   
-   
+
    </div>
    
 

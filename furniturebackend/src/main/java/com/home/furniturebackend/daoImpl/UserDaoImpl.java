@@ -71,22 +71,21 @@ public class UserDaoImpl implements UserDao
 	public User getByEmail(String email) 
 	{
 		
-		String query = "FROM User Where email = :email";
-		
+		String query="from User where email =:email";
 		try
-		{
-			
+		{		
 			return sessionFactory.getCurrentSession()
-			       .createQuery(query,User.class)
-			       .setParameter("email",email)
-			        .getSingleResult();
-			       
-		}catch(Exception e)
+					     .createQuery(query,User.class)
+					          .setParameter("email",email).getSingleResult();
+			
+		}
+		catch(Exception e)
 		{
-			e.printStackTrace();
+			//e.printStackTrace();
 			return null;
 		}
-
+		
+		
 	}
 
 	public Address getBillingAddress(User user)
