@@ -26,7 +26,7 @@ $(function(){
 	
 	}
 	/*********************************************************************************************/
-	//to tacle csrf token
+	//to tackle csrf token
 	
 	// for handling CSRF token
 	var token = $('meta[name="_csrf"]').attr('content');
@@ -114,7 +114,7 @@ $(function(){
 						  var str = '';
 						  str += '<a href="'+window.contextRoot+ '/show/'+data+'/product" class="btn btn-primary"><span class="glyphicon glyphicon-eye-open"></span></a> &nbsp;';
 						  
-						  if(userRole == 'ADMIN')
+						  if(userRole !== 'ADMIN')
 							  {
 							  str += '<a href="'+window.contextRoot+ '/manage/'+data+'/product" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></a>';
 

@@ -34,7 +34,8 @@
 						</ol>
 					</c:if>
 
-					<!-- for particular cateogry -->
+					<!-- for particular category -->
+					
 					<c:if test="${userClickCategoryProducts == true }">
 
 						<script>

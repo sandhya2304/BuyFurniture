@@ -18,7 +18,7 @@ public interface UserDao
 	
 	List<Address> listShippingAddress(User user);  //list shipping address for a user 
 	
-	public boolean updateCart(Cart cart);
+	
 	
 	public User getByEmail(String email);
 	

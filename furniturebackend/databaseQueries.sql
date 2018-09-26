@@ -39,11 +39,43 @@ CREATE TABLE product (
 	CONSTRAINT fk_product_supplier_id FOREIGN KEY (supplier_id) REFERENCES user_detail(id),	
 );	
 
+
+-- the cart line table to store the cart details
+
+CREATE TABLE cart_line (
+	id IDENTITY,
+	cart_id int,
+	total DECIMAL(10,2),
+	product_id int,
+	product_count int,
+	buying_price DECIMAL(10,2),
+	is_available boolean,
+	CONSTRAINT fk_cartline_product_id FOREIGN KEY (product_id ) REFERENCES product (id),
+	CONSTRAINT pk_cartline_id PRIMARY KEY (id)
+);
+
+
+
+
 -- adding three categories
 INSERT INTO category (name, description,image_url,is_active) VALUES ('Laptop', 'This is description for Laptop category!', 'CAT_1.png', true);
 INSERT INTO category (name, description,image_url,is_active) VALUES ('Television', 'This is description for Television category!', 'CAT_2.png', true);
 INSERT INTO category (name, description,image_url,is_active) VALUES ('Mobile', 'This is description for Mobile category!', 'CAT_3.png', true);
--- adding three users 
+
+
+-- adding three users
+
+
+INSERT INTO user_detail 
+(first_name, last_name, role, enabled, password, email, contact_number) 
+VALUES ('ma', 'Sharma', 'ADMIN', true, '$2y$12$wSCqTbaLQDcR7lfOPsnj2e7FXWaNrDvtGt9UmVIP7KhAoL1KqnZKm', 'ma@gmail.com', '1234');
+
+
+INSERT INTO user_detail 
+(first_name, last_name, role, enabled, password, email, contact_number) 
+VALUES ('pa', 'Sharma', 'User', true, '$2y$12$9wHTenh69CzEMyWvJtcDr.76uaGZf56UQw6nDL4rZsnbZOMt8/Ajq', 'pa@gmail.com', '5678');
+
+
 INSERT INTO user_detail 
 (first_name, last_name, role, enabled, password, email, contact_number) 
 VALUES ('Virat', 'Kohli', 'ADMIN', true, '$2a$06$ORtBskA2g5Wg0HDgRE5ZsOQNDHUZSdpJqJ2.PGXv0mKyEvLnKP7SW', 'vk@gmail.com', '8888888888');
