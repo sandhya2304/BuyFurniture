@@ -7,7 +7,7 @@ import com.home.furniturebackend.dto.Cart;
 public class UserModel implements Serializable
 {
 	/*
-	 * reuire fields once the user login
+	 * require fields once the user login
 	 */
 	
 	private int id;
@@ -15,8 +15,6 @@ public class UserModel implements Serializable
 	private String email;
 	private String role;
 	private Cart cart;
-	
-	
 	
 	
 	
@@ -51,6 +49,8 @@ public class UserModel implements Serializable
 	public void setCart(Cart cart) {
 		this.cart = cart;
 	}
+	
+	
 	@Override
 	public String toString() {
 		return "UserModel [id=" + id + ", fullname=" + fullName + ", email=" + email + ", role=" + role + ", cart="

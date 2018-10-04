@@ -42,19 +42,21 @@ public class CartLineTestCase
 		
 	}
 	
+	
+	/*
 	@Test
 	public void testAddNewCartLine()
 	{
 		
 		//get the user
 		
-		user = userDao.getByEmail("pa@gmail.com");
+		user = userDao.getByEmail("nimo@gmail.com");
 		
 		//fetch the cart
 		cart = user.getCart();
 		
 		//get the product
-		product = productDao.get(4);
+		product = productDao.get(33);
 		
 		//create a new cartline
 		cartLine = new CartLine();
@@ -80,6 +82,6 @@ public class CartLineTestCase
 		assertEquals("failed to upcate cart ",true,cartLineDao.updateCart(cart));
 	}
 	
-
+*/
 
 }

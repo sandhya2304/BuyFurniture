@@ -17,6 +17,9 @@ $(function(){
 	case  'Manage Products':
 		  $('#manageProducts').addClass('active');
 		  break;
+	case  'User Cart':
+		  $('#userCart').addClass('active');
+		  break;
 		  
 	default:
 		if(menu=='home') break;
@@ -32,7 +35,9 @@ $(function(){
 	var token = $('meta[name="_csrf"]').attr('content');
 	var header = $('meta[name="_csrf_header"]').attr('content');
 	
-	if((token!=undefined && header !=undefined) && (token.length > 0 && header.length > 0)) {		
+	if((token!=undefined && header !=undefined) && (token.length > 0 && header.length > 0))
+	{		
+		
 		// set the token header for the ajax request
 		$(document).ajaxSend(function(e, xhr, options) {			
 			xhr.setRequestHeader(header,token);			
@@ -365,7 +370,7 @@ $(function(){
 		}
 	
 	
-	//-------------------valiadateion for-----LOGIN FORM-----------------------------------------------------
+	//-------------------valiadation for-----LOGIN FORM-----------------------------------------------------
 	
 var $loginForm=$('#loginForm') 
 	
@@ -415,6 +420,58 @@ var $loginForm=$('#loginForm')
 		}
 	
 	//--------------------------------------------------------------------------------------
-	/**********************************************************************/
+	/******************refresh cart*****cartLine Product count using jqery*********************/
+
+    $('button[name="refreshCart"]').click(function(){
+    
+    	//fetch the cartline id
+    	var cartLineId = $(this).attr('value');
+    	var countElement = $('#count_' +cartLineId);
+    	
+    	var originalCount = countElement.attr('value');
+    	var currentCount = countElement.val();
+    	
+    	//work only when the count has changed
+    	
+    	if(currentCount !== originalCount)
+    		{
+    		    
+    		    if(currentCount < 1 || currentCount >3)
+    		    	{
+    		    	  
+    		    	    //revert back to original count
+    		    	countElement.val(originalCount);
+    		    	bootbox.alert({
+    		    		size: 'medium',
+    		    		title: 'error',
+    		    		message: 'Product should be min 1 or max 3'
+    		    		
+    		    	      });
+    		    	
+    		    	}
+    		    else
+    		    	{
+    		    	  var updateURL = window.contextRoot +'/cart/' +cartLineId+'/update?count='+currentCount;
+    		    	  
+    		    	  //forward it to the controller
+    		    	  window.location.href=updateURL;
+    		    	
+    		    	}
+    		   
+    		}
+    	
+    })
+    
+    
+    
+
+
+
+
+
+
+
+
+/*************************************************************************/
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////
 });
