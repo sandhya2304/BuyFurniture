@@ -69,8 +69,8 @@
 	          <c:when test="${product.quantity < 1}">
 	          
 	              <a href="javascript:void(0)" class="btn btn-success disabled"> <strike> 
-	         <span class="glyphicon glyphicon-shopping-cart"></span> Add To Cart</strike> 
-	       </a>
+	              <span class="glyphicon glyphicon-shopping-cart"></span> Add To Cart</strike> 
+	          </a>
 	          
 	          </c:when>
 	          
