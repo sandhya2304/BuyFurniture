@@ -109,6 +109,13 @@
 				<%@include file="cart.jsp"%>
 
 			</c:if>
+			
+			<!-- load only when manage cart click-->
+			<c:if test="${clickOnCheckoutCart == true}">
+
+				<%@include file="checkout.jsp"%>
+
+			</c:if>
 
 
 		</div>

@@ -62,6 +62,19 @@ public class CartController
 		return mv;
 	}
 	
+	
+	@RequestMapping(value="/checkout")
+	public ModelAndView checkoutCart()
+	{
+		ModelAndView mv=new ModelAndView("page");
+		
+		mv.addObject("title","User Cart checkout");
+		mv.addObject("clickOnCheckoutCart",true);
+		
+		return mv;
+	}
+	
+	
 	@RequestMapping(value="/{cartLineId}/update")
 	public String updateCart(@PathVariable int cartLineId,@RequestParam int count)
 	{

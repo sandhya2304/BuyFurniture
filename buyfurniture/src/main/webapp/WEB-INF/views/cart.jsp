@@ -32,7 +32,7 @@
 					<tbody>
 					
 					
-					<c:forEach items="${cartLines }" var="cartLine" >
+					<c:forEach items="${cartLines}" var="cartLine" >
 					 
 					  <tr>
 							<td data-th="Product">
@@ -81,12 +81,13 @@
 							<td><a href="${contextRoot}/show/all/products" class="btn btn-warning"><span class="glyphicon glyphicon-chevron-left"></span> Continue Shopping</a></td>
 							<td colspan="2" class="hidden-xs"></td>
 							<td class="hidden-xs text-center"><strong>Total &#8377; ${userModel.cart.grandTotal }</strong></td>
-							<td><a href="#" class="btn btn-success btn-block">Checkout <span class="glyphicon glyphicon-chevron-right"></span></a></td>
+							<td><a href="${contextRoot}/cart/checkout" class="btn btn-success btn-block">Checkout <span class="glyphicon glyphicon-chevron-right"></span></a></td>
 						</tr>
 					</tfoot>
 				</table>
 
      </c:when>
+     
      <c:otherwise>
      
        <div class="jumbotron">
@@ -96,8 +97,7 @@
             <h1>Your Cart is Empty!!!</h1>
          
          </div>
-       
-       
+             
        </div>
      
      
